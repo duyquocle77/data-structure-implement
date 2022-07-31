@@ -4,28 +4,33 @@
 #include <stdbool.h>
 
 typedef Node {
-   int data;
-   int key;
-   Node *next;
+	int data;
+	int key;
+	Node *next;
 } Node;
 
 Node *head = NULL;
 Node *current = NULL;
 
-void printList();
-void insertFirst(int key, int data);
-Node* deleteFirst();
-bool isEmpty();
-int length();
+void  printList();
+void  insertFirst(int key, int data);
+Node* removeFirst();
+bool  isEmpty();
+int   length();
 Node* find(int key);
-Node* delete(int key);
-void sort();
-void reverse(Node** head_ref);
+Node* remove(int key);
+void  sort();
+void  reverse(Node** head_ref);
 
-void main() {
-	
+int main() {
+	return 0;
 }
-
+					
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 void 
 printList() {
    Node *ptr = head;
@@ -39,6 +44,11 @@ printList() {
    printf(" ]");
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 void 
 insertFirst(int key, int data) {
    Node *link = (Node*) malloc(sizeof(Node));
@@ -51,8 +61,13 @@ insertFirst(int key, int data) {
    head = link;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 Node* 
-deleteFirst() {
+removeFirst() {
 
    Node *tempLink = head;
 
@@ -61,11 +76,21 @@ deleteFirst() {
    return tempLink;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 bool 
 isEmpty() {
    return head == NULL;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 int 
 length() {
    int length = 0;
@@ -78,6 +103,11 @@ length() {
    return length;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 Node* 
 find(int key) {
 
@@ -99,8 +129,13 @@ find(int key) {
    return current;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 Node* 
-delete(int key) {
+remove(int key) {
    Node* current = head;
    Node* previous = NULL;
 
@@ -127,6 +162,11 @@ delete(int key) {
    return current;
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 void 
 sort() {
 
@@ -159,6 +199,11 @@ sort() {
    }   
 }
 
+/*
+ *\brief			
+ *\param[in]			
+ *\return			
+ */
 void 
 reverse(Node** head_ref) {
    Node* prev   = NULL;

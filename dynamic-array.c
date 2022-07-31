@@ -9,52 +9,14 @@ void Xoa(int* mang, int* sl, int vt);
 
 int main()
 {
-	int *mang, sl;
-	
-	do 
-	{
-		printf("Nhap so luong phan tu = ");
-		scanf("%d", &sl);
-		
-		if(sl <= 0)
-			printf("So luong khong hop le !");
-	} while (sl <= 0);
-	
-	mang = (int *)calloc(sl, sizeof(int));
-	
-	printf("Nhap mang :\n");
-	Nhap(mang, sl);
-	
-	printf("Xuat mang :\n");
-	Xuat(mang, sl);
-	
-	int vt, gt;
-	printf("Them phan tu co gia tri :");
-	scanf("%d", &gt);
-
-	printf("Them phan tu tai vi tri :");
-	scanf("%d", &vt);
-	
-	Them(mang, &sl, vt, gt);
-	
-	printf("Mang sau khi them :");
-	Xuat(mang, sl);
-	
-	int vtr;
-
-	printf("Them phan tu tai vi tri :");
-	scanf("%d", &vtr);
-	
-	Xoa(mang, &sl, vtr);
-	
-	printf("Mang sau khi xoa :");
-	Xuat(mang, sl);
-	
-	free(mang);
-	getch();
 	return 0;
 }
 
+/*
+ *\brief			
+ *\param[in]
+ *\return
+ */
 void Nhap(int* mang, int sl)
 {
 	int i;
@@ -65,6 +27,11 @@ void Nhap(int* mang, int sl)
 	}
 }
 
+/*
+ *\brief			
+ *\param[in]
+ *\return
+ */
 void Xuat(int* mang, int sl)
 {
 	int i;
@@ -75,6 +42,11 @@ void Xuat(int* mang, int sl)
 	printf("\n");
 } 
 
+/*
+ *\brief			
+ *\param[in]
+ *\return
+ */
 void Them(int* mang, int* sl, int vt, int gt)
 {
 	int i;
@@ -87,6 +59,11 @@ void Them(int* mang, int* sl, int vt, int gt)
 	(*sl)++;
 }
 
+/*
+ *\brief			
+ *\param[in]
+ *\return
+ */
 void Xoa(int* mang, int* sl, int vt)
 {
 	int i;

@@ -1,91 +1,161 @@
 #include <stdio.h>
- 
-int  length_string (char[]);
-char is_symmetry(char[]);
-void str_copy(char[], char[]);
-char find_char(char[], char);
-void find_substr(char[], char[]);
-void to_lower(char[]);
-void to_upper(char[]);
-void to_title(char[]);
+#include <stdlib.h>
+
+void  swap(char*, char*);
+int   str_len(char* str);
+char  str_is_symmetry(char*);
+char* str_concat(const char*, const char*);
+void  str_copy(char*, const char*);
+void  str_rev(char*);
+char  str_find_char(const char*, char);
+void  str_find_substr(char*, const char);
+void  str_lower(char*);
+void  str_upper(char*);
+void  str_capital(char*);
  
 int main(){
-    char str[100], key;
-    printf("\nNhap chuoi: ");
-    gets(str);
- 
-    printf("Length = %d", length_string(str));
-    
-	if (!is_symmetry(s1))
-    {
-        printf("chuoi vua nhap khong phai chuoi doi xung\n");
-    }
-    if (is_symmetry(s1))
-    {
-        printf("chuoi vua nhap la chuoi doi xung\n");
-    }
-    
-    printf("\nxin moi ban nhap vao ki tu can dem\n");
-    scanf("%c", &key);
-    if (kiemtra(chuoi, key) == 1)
-    {
-        printf("\nki tu %c khong co trong chuoi\n", key);
-    }
+	return 0;
 }
 
+/*
+ *\brief			swap 2 character	
+ *\param[in]
+ *\param[in]
+ *\return			
+ */
+void
+swap(char* a, char* b) {
+	*b += *a;
+	*a = *b - *a;
+	*b -= *a;
+}
+					
+/*
+ *\brief			get length of string
+ *\param[in]
+ *\return			
+ */
 int 
-length_string (char str[]){
+str_len(char* str){
     int i = 0;
-    for(; str[i]; i++); // for(int i = 0; str[i] != '\0'; i++){}
+    while(*(str++) != '\0') {
+    	i++;
+	}
     
     return i;
 }
 
+/*
+ *\brief			check a string is symmetry 	
+ *\param[in]
+ *\return			
+ */
 char 
-is_symmetry(char s1[100]) {
+is_symmetry(char* str) {
     int i;
-    for (i = 0; i < strlen(s1) / 2; i++) {
-        if (s1[i] != s1[strlen(s1) - 1 - i]) {
+    for (i = 0; i < [str_len(str) / 2]; i++) {
+        if (str[i] != str[str_len(str) - 1 - i]) {
             return 0;
         }
     }
     return 1;
 }
 
+/*
+ *\brief			concatenate 2 string
+ *\param[in]
+ *\return			
+ */
+char* 
+str_concat(char* str_1, char* str_2) {
+	char* des = (char *) malloc(str_len(str_1) + str_len(str_2) + 1);
+
+	while (*str_1 != '\0') {
+		*des = *str_1;
+		str_1++;
+	}
+		
+	while(*str_2 != '\0') {
+		*des = *str_2;
+		str_2++;
+	}
+	
+	*des = '\0';
+	
+	return des;
+}
+
+/*
+ *\brief			copy a string
+ *\param[in]
+ *\return			
+ */
+void  
+str_copy(char* des, const char* src) {
+	while (*src != '\0') {
+		*des = *src;
+		des++;
+		src++;
+	}
+	
+	*des = '\0';
+}
+					
+/*
+ *\brief			reverse a string
+ *\param[in]
+ *\return			
+ */
+void 
+str_rev(char* str) {
+	int i;
+	int len = str_len(str);
+	
+	for (i = 0; i < (len / 2); i++) {
+		swap(&str[i], &str[len - i - 1]);
+	}
+	
+}
+
+/*
+ *\brief			find a character in a string
+ *\param[in]
+ *\return			
+ */
 char 
-find_char(char str[100], char key) {
-    int i, dem = 0;
-    for (i = 0; i < strlen(chuoi); i++) {
-        if (key == chuoi[i]) {
-            dem++;
+find_char(const char* str, char key) {
+    int i, cnt = 0;
+    for (i = 0; i < str_len(str); i++) {
+        if (key == str[i]) {
+            cnt++;
         }
     }
     
-    if (dem > 0) {
-        printf("\nki tu %c trong chuoi xuat hien %d lan ", key, dem);
+    if (cnt > 0) {
+        printf("\nki tu %c trong chuoi xuat hien %d lan ", key, cnt);
     }
     
-    if (dem == 0) {
+    if (cnt == 0) {
         return 1;
     }
 }
 
-void find_substr(char[], char[]) {
-	 char s1[] = "VietTuts hoc lap trinh online, hoc c, hoc c++, hoc java, ...";
-   char s2[] = "hoc";
-  
-   int n = 0;
-   int m = 0;
+/*
+ *\brief			find a sub-string in a string and the times of appearance of sub-string
+ *\param[in]
+ *\return			
+ */
+void 
+find_substr(char* sub_str, const char* str) {
+   int i, j;
    int times = 0;
-   // bien luu giu do dai cua chuoi can tim kiem
+
    int len = strlen(s2);
   
    while(s1[n] != '\0') {
   
-      if(s1[n] == s2[m]) {    // neu ky tu dau tien la giong nhau
-  
-         // tiep tuc tim kiem
-         while(s1[n] == s2[m]  && s1[n] !='\0') {
+      if(*sub_str == *str) {    
+         while((*sub_str == *str)  && s1[n] !='\0') {
             n++;
             m++;
          }
@@ -108,32 +178,52 @@ void find_substr(char[], char[]) {
       m=0;  // reset bien dem.
    }
 }
-
+					
+/*
+ *\brief			convert a string to lowercase
+ *\param[in]
+ *\return			
+ */
 void 
-to_lower(char str[]) {
+str_lower(char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'A' && str[i] <= 'Z') {
             str[i] = str[i] + 32;
         }
     }
 }
- 
+
+/*
+ *\brief			convert a string to uppercase
+ *\param[in]
+ *\return			
+ */
 void 
-to_upper(char s[]) {
+str_upper(char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
             str[i] = str[i] - 32;
         }
     }
 }
- 
+
+/*
+ *\brief			convert a string to capital
+ *\param[in]
+ *\return			
+ */
 void 
-to_title(char str[]) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] >= 'A' && str[i] <= 'Z') str[i] += 32;
+str_capital(char *str) {
+	while (*str != '\0') {
+        if (*str >= 'A' && *str <= 'Z') {
+        	*str += 32;
+		} 
+
         if (str[i - 1] == ' ' || i == 0) {
-            if (str[i] >= 'a' && str[i] <= 'z')
-                str[i] = str[i] - 32;
+            if (*str >= 'a' && *str <= 'z')
+                *str = *str - 32;
         }
+        
+        str++;
     }
 }
