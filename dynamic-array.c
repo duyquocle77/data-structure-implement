@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <conio.h>
 
-void Nhap(int* mang, int sl);
-void Xuat(int* mang, int sl);
-void Them(int* mang, int* sl, int vt, int gt);
-void Xoa(int* mang, int* sl, int vt);
+void Nhap(int* arr, int size);
+void Xuat(int* arr, int size);
+void Them(int* arr, int* size, int pos, int val);
+void Xoa(int* arr, int* size, int pos);
 
 int main()
 {
@@ -17,13 +17,11 @@ int main()
  *\param[in]
  *\return
  */
-void Nhap(int* mang, int sl)
-{
+void Nhap(int* arr, int size) {
 	int i;
-	for(i = 0; i < sl; i++)
-	{
+	for(i = 0; i < size; i++) {
 		printf("Nhap phan tu thu [%d] = ", i);
-		scanf("%d", &mang[i]);
+		scanf("%d", &arr[i]);
 	}
 }
 
@@ -32,12 +30,10 @@ void Nhap(int* mang, int sl)
  *\param[in]
  *\return
  */
-void Xuat(int* mang, int sl)
-{
+void Xuat(int* arr, int size) {
 	int i;
-	for(i = 0; i < sl; i++)
-	{
-		printf("%d	", mang[i]);
+	for(i = 0; i < size; i++) {
+		printf("%d	", arr[i]);
 	}
 	printf("\n");
 } 
@@ -47,16 +43,16 @@ void Xuat(int* mang, int sl)
  *\param[in]
  *\return
  */
-void Them(int* mang, int* sl, int vt, int gt)
+void Them(int* arr, int* size, int pos, int val)
 {
 	int i;
-	(int *)realloc(mang, (*sl + 1) * sizeof(int));
-	for (i = *sl - 1; i >= vt; i--)
+	realloc(arr, (*size + 1) * sizeof(int));
+	for (i = *size - 1; i >= pos; i--)
 	{
-		mang[i + 1] = mang[i];
+		arr[i + 1] = arr[i];
 	}
-	mang[vt] = gt;
-	(*sl)++;
+	arr[pos] = val;
+	(*size)++;
 }
 
 /*
@@ -64,14 +60,14 @@ void Them(int* mang, int* sl, int vt, int gt)
  *\param[in]
  *\return
  */
-void Xoa(int* mang, int* sl, int vt)
+void Xoa(int* arr, int* size, int pos)
 {
 	int i;
-	for(i = vt + 1; i < *sl; i++)
+	for(i = pos + 1; i < *size; i++)
 	{
-		mang[i - 1] = mang[i];
+		arr[i - 1] = arr[i];
 	}
-	(int *)realloc(mang, (*sl - 1)* sizeof(int));
-	(*sl)--;
+	realloc(arr, (*size - 1)* sizeof(int));
+	(*size)--;
 }
 
