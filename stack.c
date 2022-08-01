@@ -28,7 +28,7 @@ void displayEmployee(Employee* employee) {
 
 void stack_init(Stack*);
 void stack_push(Stack*, void*);
-void stack_pop(Stack*, void*);
+void stack_pop(Stack*);
 Node* getNode(Stack*, COMPARE, void*);
 void stack_print(Stack*);
 void stack_size(Stack*);
@@ -57,13 +57,14 @@ stack_init(Stack* stack) {
 void 
 stack_push(Stack* stack, void* data) {
 	Node* node = (Node*)malloc(sizeof(Node));
+	node->data = data;
 	node->next = NULL;
 
 	if (stack->top = NULL) {
 		stack->top = node;
 	}
 	else {
-		stack->top->next = node;
+		node->next = stack->top;
 		stack->top = node;
 	}
 }
@@ -74,8 +75,11 @@ stack_push(Stack* stack, void* data) {
  *\retval
  */
 void 
-stack_pop(Stack* stack, void* data) {
-
+stack_pop(Stack* stack) {
+	Node* tmp = (Node*)malloc(sizeof(Node));
+	tmp = stack->top;
+	stack->top = stack->top->next;
+	free(tmp);
 }
 
 /*

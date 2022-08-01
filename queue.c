@@ -29,7 +29,7 @@ void displayEmployee(Employee* employee) {
 
 void queue_init(Queue*);
 void enqueue(Queue*, void*);
-void dequeue(Queue*, void*);
+void dequeue(Queue*);
 Node* getNode(Queue*, COMPARE, void*);
 void  queue_print(Queue*, DISPLAY);
 int   queue_size(Queue*);
@@ -60,15 +60,16 @@ void
 enqueue(Queue* queue, void* data) {
 	Node* node = (Node*)malloc(sizeof(Node));
 	node->data = data;
+	node->next = NULL;
 
 	if (queue->front = NULL) {
 		queue->front = node;
 		queue->rear = node;
-		node->next = NULL;
+		
 	}
 	else {
-		node->next = queue->front;
-		queue->front = node;
+		queue->rear->next = node;
+		queue->rear = node;
 	}
 }
 
@@ -78,18 +79,19 @@ enqueue(Queue* queue, void* data) {
  *\retval
  */
 void
-dequeue(Queue* queue, void* data) {
-	Node* node = (Node*)malloc(sizeof(Node));
-	node->data = data;
+dequeue(Queue* queue) {
+	Node* tmp = (Node*)malloc(sizeof(Node));
+	tmp->data = data;
 
 	if (queue->front = NULL) {
 		queue->front = NULL;
 		queue->rear = NULL;
 	}
 	else {
-
+		Node* tmp = queue->front;
+		queue->front = queue->front->next;
 	}
-	free(node);
+	free(tmp);
 }
 
 /*
